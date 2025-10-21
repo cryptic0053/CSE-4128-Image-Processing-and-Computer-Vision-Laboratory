@@ -249,30 +249,30 @@ if uploaded is not None:
     c1, c2, c3 = st.columns(3, gap="small")
     with c1:
         st.caption("Input")
-        st.image(imshow_gray(img0), use_column_width=True)
+        st.image(imshow_gray(img0), use_container_width=True)
         st.caption("CLAHE")
-        st.image(imshow_gray(img1), use_column_width=True)
+        st.image(imshow_gray(img1), use_container_width=True)
         st.caption("Gaussian")
-        st.image(imshow_gray(img2), use_column_width=True)
+        st.image(imshow_gray(img2), use_container_width=True)
 
     with c2:
         st.caption("FFT magnitude")
-        st.image(imshow_gray(fft_mag), use_column_width=True)
+        st.image(imshow_gray(fft_mag), use_container_width=True)
         st.caption("Canny edges")
-        st.image(imshow_gray(edges, use_uint8=True), use_column_width=True)
+        st.image(imshow_gray(edges, use_uint8=True), use_container_width=True)
         st.caption("Grid mask")
-        st.image(imshow_gray(grid_mask.astype(np.float32)), use_column_width=True)
+        st.image(imshow_gray(grid_mask.astype(np.float32)), use_container_width=True)
 
     with c3:
         st.caption("Crack score map")
-        st.image(imshow_gray(cscore), use_column_width=True)
+        st.image(imshow_gray(cscore), use_container_width=True)
         st.caption("Defect mask (clean)")
-        st.image(imshow_gray(mask.astype(np.float32)), use_column_width=True)
+        st.image(imshow_gray(mask.astype(np.float32)), use_container_width=True)
         st.caption("Overlay (red = defects)")
-        st.image(overlay[..., ::-1], use_column_width=True)  # BGR->RGB
+        st.image(overlay[..., ::-1], use_container_width=True)  # BGR->RGB
 
     st.caption("Skeleton")
-    st.image(imshow_gray(skel.astype(np.float32)), use_column_width=True)
+    st.image(imshow_gray(skel.astype(np.float32)), use_container_width=True)
 
     st.markdown("---")
     st.subheader("Metrics")
