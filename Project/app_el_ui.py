@@ -178,7 +178,7 @@ uploaded = st.file_uploader("Upload EL image (PNG/JPG/BMP)", type=['png','jpg','
 
 if uploaded is not None:
     # -----------------------
-    # 1) Read and preprocess
+    # Processing pipeline
     # -----------------------
     file_bytes = np.asarray(bytearray(uploaded.read()), dtype=np.uint8)
     img0 = cv2.imdecode(file_bytes, cv2.IMREAD_UNCHANGED)
@@ -189,119 +189,81 @@ if uploaded is not None:
         img0 = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
     img0 = to_float01(img0)
 
-    # 2) CLAHE + Gaussian
     img1 = clahe(img0, clip=2.0, tiles=(8,8))
     img2 = gaussian(img1, ksize=gauss_ksize, sigma=gauss_sigma)
-
-    # 3) FFT
     fft_mag = fft_magnitude(img2)
 
-    # 3b) Notch
     img2n = img2
     if use_notch:
-        pairs = []
         try:
-            parts = [p.strip() for p in offsets_str.split(",")]
-            for p in parts:
-                dy, dx = p.split()
-                pairs.append((int(dy), int(dx)))
+            pairs = [tuple(map(int, p.split())) for p in offsets_str.split(",")]
         except Exception:
-            st.warning("Offsets parse failed; using default [(0,35),(0,-35),(35,0),(-35,0)]")
             pairs = [(0,35),(0,-35),(35,0),(-35,0)]
         img2n = notch_filter_fft(img2, offsets=pairs, radius=notch_radius)
 
-    # 4–5) Edge detection and thresholding
     edges = canny(img2n, canny_low, canny_high)
     cells = adaptive_gaussian_threshold(img2n, ad_block, ad_C)
 
-    # 6) Hough lines + grid mask
     lines = hough_lines(edges, threshold=hthres, min_line_len=hminlen, max_line_gap=hgap)
     grid_mask = make_grid_mask_from_hough(lines, img2n.shape, angle_dev_deg=angle_dev,
                                           exclude=(0.0, 90.0), dilate=grid_dilate)
 
-    # 7) Crack score and thresholding
     cscore = crack_score(img2n)
     t_otsu = threshold_otsu(cscore)
     t_sauv = threshold_sauvola(cscore, window_size=max(25, ad_block), k=0.2)
     t_comb = np.maximum(t_sauv, t_otsu)
     mask_raw = (cscore > t_comb)
 
-    # Remove grid + cleanup
     mask_ng = mask_raw & (~grid_mask)
     mask = morphology_cleanup(mask_ng, open_k=open_k, close_k=close_k, min_area=min_area)
 
-    # 8) Regions and skeleton
     lab = measure.label(mask.astype(bool), connectivity=2)
     props = measure.regionprops(lab)
     crack_len_px, skel = skeletonize_len(mask)
-
     overlay = overlay_red(img2n, mask)
     H, W = img2n.shape
     sev, ratio = classify_severity(crack_len_px, H, W)
 
     # -----------------------
-    # Display: Serial flow
+    # Display (3-column grid)
     # -----------------------
-    st.subheader("Pipeline — Step-by-Step Visualization")
+    st.subheader("Step-by-Step Workflow (3-column View)")
 
-    st.markdown("### 0️⃣ Input")
-    st.image(imshow_gray(img0), use_container_width=True)
+    images = [
+        ("0️⃣ Input", img0),
+        ("1️⃣ CLAHE", img1),
+        ("2️⃣ Gaussian Blur", img2),
+        ("3️⃣ FFT Magnitude", fft_mag),
+        ("3b️ Notch Filtered", img2n if use_notch else img2),
+        ("4️⃣ Canny Edges", edges),
+        ("5️⃣ Cell Boundaries", cells),
+        ("6️⃣ Grid Mask", grid_mask),
+        ("7️⃣ Crack Score", cscore),
+        ("8️⃣ Raw Defect Mask", mask_raw),
+        ("9️⃣ Cleaned Mask", mask),
+        ("🔟 Overlay", overlay[..., ::-1]),
+        ("1️⃣1️⃣ Skeleton", skel),
+    ]
 
-    st.markdown("### 1️⃣ CLAHE (Contrast Enhancement)")
-    st.image(imshow_gray(img1), use_container_width=True)
-
-    st.markdown("### 2️⃣ Gaussian Blur (Noise Reduction)")
-    st.image(imshow_gray(img2), use_container_width=True)
-
-    st.markdown("### 3️⃣ FFT Magnitude (Frequency Domain)")
-    st.image(imshow_gray(fft_mag), use_container_width=True)
-
-    if use_notch:
-        st.markdown("### 3b️⃣ Notch Filtered Image")
-        st.image(imshow_gray(img2n), use_container_width=True)
-
-    st.markdown("### 4️⃣ Canny Edges (Grid Detection)")
-    st.image(imshow_gray(edges, use_uint8=True), use_container_width=True)
-
-    st.markdown("### 5️⃣ Cell Boundaries (Adaptive Gaussian Threshold)")
-    st.image(imshow_gray(cells.astype(np.float32)), use_container_width=True)
-
-    st.markdown("### 6️⃣ Grid Mask (From Hough Lines)")
-    st.image(imshow_gray(grid_mask.astype(np.float32)), use_container_width=True)
-
-    st.markdown("### 7️⃣ Crack Score Map (Structural Intensity)")
-    st.image(imshow_gray(cscore), use_container_width=True)
-
-    st.markdown("### 8️⃣ Raw Defect Mask (Before Morphological Cleanup)")
-    st.image(imshow_gray(mask_raw.astype(np.float32)), use_container_width=True)
-
-    st.markdown("### 9️⃣ Cleaned Defect Mask (After Grid Removal + Morphology)")
-    st.image(imshow_gray(mask.astype(np.float32)), use_container_width=True)
-
-    st.markdown("### 🔟 Overlay (Red = Detected Defects)")
-    st.image(overlay[..., ::-1], use_container_width=True)
-
-    st.markdown("### 1️⃣1️⃣ Crack Skeleton (Structure Outline)")
-    st.image(imshow_gray(skel.astype(np.float32)), use_container_width=True)
+    for i in range(0, len(images), 3):
+        cols = st.columns(3)
+        for j, col in enumerate(cols):
+            if i + j < len(images):
+                title, img = images[i + j]
+                col.caption(title)
+                if img.ndim == 2:
+                    col.image(imshow_gray(img), use_container_width=True)
+                else:
+                    col.image(img, use_container_width=True)
 
     st.divider()
     st.subheader("📊 Metrics Summary")
     st.write(f"- Image size: **{W}×{H}**")
-    st.write(f"- Number of regions: **{len(props)}**")
+    st.write(f"- Regions detected: **{len(props)}**")
     st.write(f"- Crack length (px): **{int(crack_len_px)}**")
     st.write(f"- Normalized crack length: **{ratio:.5f}**")
-    st.write(f"- **Severity**: :red[**{sev}**]")
-    st.write(f"- Hough lines (total): **{len(lines)}**")
+    st.write(f"- Severity: :red[**{sev}**]")
+    st.write(f"- Hough lines detected: **{len(lines)}**")
 
-    with st.expander("Parameter Snapshot", expanded=False):
-        st.write({
-            "gaussian_ksize": gauss_ksize, "gaussian_sigma": gauss_sigma,
-            "adaptive_block": ad_block, "adaptive_C": ad_C,
-            "canny_low": canny_low, "canny_high": canny_high,
-            "hough_threshold": hthres, "hough_minlen": hminlen, "hough_gap": hgap,
-            "angle_dev": angle_dev, "grid_dilate": grid_dilate,
-            "open_kernel": open_k, "close_kernel": close_k, "min_area": min_area,
-            "use_notch": use_notch, "notch_radius": notch_radius, "notch_offsets": offsets_str,
-        })
 else:
-    st.info("📤 Upload an EL image to begin processing.")
+    st.info("📤 Upload an EL image to run the defect detection pipeline.")
