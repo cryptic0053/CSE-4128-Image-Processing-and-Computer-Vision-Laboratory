@@ -1,0 +1,1840 @@
+{
+  "summary": {
+    "input_image": "E:\\4-1\\Lab\\CSE 4128 Image Processing and Computer Vision Laboratory\\Project\\ARTS_00001_r6_c2.png",
+    "num_regions": 89,
+    "crack_length_px": 8446.0,
+    "hough_lines_total": 24,
+    "busbar_integrity": [
+      {
+        "x1": 151,
+        "y1": 247,
+        "x2": 155,
+        "y2": 0,
+        "continuity_score": 0.33243606998654107
+      },
+      {
+        "x1": 104,
+        "y1": 232,
+        "x2": 106,
+        "y2": 64,
+        "continuity_score": 0.33136094674556216
+      },
+      {
+        "x1": 498,
+        "y1": 326,
+        "x2": 499,
+        "y2": 216,
+        "continuity_score": 0.33633633633633636
+      },
+      {
+        "x1": 503,
+        "y1": 253,
+        "x2": 505,
+        "y2": 128,
+        "continuity_score": 0.3148148148148148
+      },
+      {
+        "x1": 24,
+        "y1": 399,
+        "x2": 27,
+        "y2": 171,
+        "continuity_score": 0.33770014556040756
+      },
+      {
+        "x1": 108,
+        "y1": 234,
+        "x2": 109,
+        "y2": 122,
+        "continuity_score": 0.3274336283185841
+      },
+      {
+        "x1": 140,
+        "y1": 383,
+        "x2": 145,
+        "y2": 68,
+        "continuity_score": 0.3322784810126582
+      },
+      {
+        "x1": 421,
+        "y1": 297,
+        "x2": 424,
+        "y2": 69,
+        "continuity_score": 0.3260553129548763
+      },
+      {
+        "x1": 266,
+        "y1": 284,
+        "x2": 268,
+        "y2": 167,
+        "continuity_score": 0.3333333333333333
+      },
+      {
+        "x1": 262,
+        "y1": 285,
+        "x2": 264,
+        "y2": 173,
+        "continuity_score": 0.34513274336283184
+      },
+      {
+        "x1": 426,
+        "y1": 198,
+        "x2": 427,
+        "y2": 88,
+        "continuity_score": 0.3213213213213213
+      },
+      {
+        "x1": 344,
+        "y1": 244,
+        "x2": 346,
+        "y2": 98,
+        "continuity_score": 0.30612244897959184
+      },
+      {
+        "x1": 385,
+        "y1": 387,
+        "x2": 387,
+        "y2": 225,
+        "continuity_score": 0.32515337423312884
+      },
+      {
+        "x1": 378,
+        "y1": 263,
+        "x2": 381,
+        "y2": 75,
+        "continuity_score": 0.32275132275132273
+      },
+      {
+        "x1": 337,
+        "y1": 372,
+        "x2": 339,
+        "y2": 229,
+        "continuity_score": 0.3194444444444444
+      }
+    ],
+    "params": {
+      "image": "E:/4-1/Lab/CSE 4128 Image Processing and Computer Vision Laboratory/Project/ARTS_00001_r6_c2.png",
+      "outdir": "E:/4-1/Lab/CSE 4128 Image Processing and Computer Vision Laboratory/Project/output",
+      "resize": null,
+      "gauss_ksize": 5,
+      "gauss_sigma": 1.0,
+      "adaptive_block": 35,
+      "adaptive_C": 5,
+      "canny_low": 25,
+      "canny_high": 90,
+      "hough_threshold": 140,
+      "hough_minlen": 110,
+      "hough_gap": 8,
+      "angle_dev": 15.0,
+      "grid_dilate": 3,
+      "open_kernel": 3,
+      "close_kernel": 3,
+      "min_area": 60,
+      "notch": "no",
+      "notch_radius": 6,
+      "notch_offsets": [
+        0,
+        35,
+        0,
+        -35,
+        35,
+        0,
+        -35,
+        0
+      ],
+      "mm_per_px": null
+    }
+  },
+  "regions": [
+    {
+      "region_id": 1,
+      "area_px": 675,
+      "perimeter_px": 322.12489168102786,
+      "eccentricity": 0.9702492775786007,
+      "major_axis_length_px": 121.05182884698493,
+      "minor_axis_length_px": 29.30763010178369,
+      "orientation_rad": -0.0632324255420592,
+      "bbox": [
+        0,
+        1,
+        117,
+        36
+      ],
+      "centroid_yx": [
+        58.644444444444446,
+        27.084444444444443
+      ]
+    },
+    {
+      "region_id": 2,
+      "area_px": 266,
+      "perimeter_px": 136.42031021678298,
+      "eccentricity": 0.9971900642154948,
+      "major_axis_length_px": 69.12475105228572,
+      "minor_axis_length_px": 5.178350900545871,
+      "orientation_rad": -0.028492166744749015,
+      "bbox": [
+        0,
+        106,
+        64,
+        113
+      ],
+      "centroid_yx": [
+        29.849624060150376,
+        109.06390977443608
+      ]
+    },
+    {
+      "region_id": 3,
+      "area_px": 25534,
+      "perimeter_px": 6368.45742854949,
+      "eccentricity": 0.5804545281617367,
+      "major_axis_length_px": 562.6727630333617,
+      "minor_axis_length_px": 458.18030251157694,
+      "orientation_rad": 0.23352724605035688,
+      "bbox": [
+        0,
+        27,
+        512,
+        512
+      ],
+      "centroid_yx": [
+        312.2950184068301,
+        336.54472468081775
+      ]
+    },
+    {
+      "region_id": 4,
+      "area_px": 481,
+      "perimeter_px": 247.79898987322335,
+      "eccentricity": 0.9994134911320787,
+      "major_axis_length_px": 139.09166396639372,
+      "minor_axis_length_px": 4.763100041035346,
+      "orientation_rad": -0.01901234431015288,
+      "bbox": [
+        0,
+        188,
+        120,
+        195
+      ],
+      "centroid_yx": [
+        57.012474012474016,
+        191.004158004158
+      ]
+    },
+    {
+      "region_id": 5,
+      "area_px": 759,
+      "perimeter_px": 342.9116882454314,
+      "eccentricity": 0.94124512796306,
+      "major_axis_length_px": 133.77394090091767,
+      "minor_axis_length_px": 45.178691986638924,
+      "orientation_rad": -0.18171031721516512,
+      "bbox": [
+        0,
+        264,
+        121,
+        317
+      ],
+      "centroid_yx": [
+        48.88142292490119,
+        274.8866930171278
+      ]
+    },
+    {
+      "region_id": 6,
+      "area_px": 571,
+      "perimeter_px": 250.5685424949238,
+      "eccentricity": 0.9847674279086909,
+      "major_axis_length_px": 100.4717773844592,
+      "minor_axis_length_px": 17.46970286499821,
+      "orientation_rad": -0.011676632692376333,
+      "bbox": [
+        0,
+        330,
+        97,
+        349
+      ],
+      "centroid_yx": [
+        47.51488616462347,
+        343.6427320490368
+      ]
+    },
+    {
+      "region_id": 7,
+      "area_px": 297,
+      "perimeter_px": 143.45584412271572,
+      "eccentricity": 0.9969532957073342,
+      "major_axis_length_px": 71.41596839950849,
+      "minor_axis_length_px": 5.570503298608286,
+      "orientation_rad": -0.023509180440246337,
+      "bbox": [
+        0,
+        424,
+        68,
+        432
+      ],
+      "centroid_yx": [
+        31.44107744107744,
+        426.6666666666667
+      ]
+    },
+    {
+      "region_id": 8,
+      "area_px": 2587,
+      "perimeter_px": 734.173664916307,
+      "eccentricity": 0.8681086246949627,
+      "major_axis_length_px": 141.30577211694114,
+      "minor_axis_length_px": 70.14054945460015,
+      "orientation_rad": -0.417073657020398,
+      "bbox": [
+        0,
+        430,
+        143,
+        508
+      ],
+      "centroid_yx": [
+        105.23308851952068,
+        475.7734827986084
+      ]
+    },
+    {
+      "region_id": 9,
+      "area_px": 80,
+      "perimeter_px": 42.8700576850888,
+      "eccentricity": 0.9225436445646799,
+      "major_axis_length_px": 18.63791169790305,
+      "minor_axis_length_px": 7.192235225656115,
+      "orientation_rad": 0.8286120318522897,
+      "bbox": [
+        8,
+        365,
+        22,
+        380
+      ],
+      "centroid_yx": [
+        14.975,
+        371.175
+      ]
+    },
+    {
+      "region_id": 10,
+      "area_px": 300,
+      "perimeter_px": 112.84062043356595,
+      "eccentricity": 0.9443913445965618,
+      "major_axis_length_px": 43.50158125412026,
+      "minor_axis_length_px": 14.304348427898706,
+      "orientation_rad": 0.08581606284506196,
+      "bbox": [
+        12,
+        0,
+        49,
+        18
+      ],
+      "centroid_yx": [
+        33.973333333333336,
+        5.3
+      ]
+    },
+    {
+      "region_id": 11,
+      "area_px": 72,
+      "perimeter_px": 36.384776310850235,
+      "eccentricity": 0.7225094789899685,
+      "major_axis_length_px": 13.045358726639067,
+      "minor_axis_length_px": 9.01905244753165,
+      "orientation_rad": -0.04854141938892681,
+      "bbox": [
+        12,
+        220,
+        25,
+        231
+      ],
+      "centroid_yx": [
+        19.375,
+        225.01388888888889
+      ]
+    },
+    {
+      "region_id": 12,
+      "area_px": 155,
+      "perimeter_px": 59.11269837220809,
+      "eccentricity": 0.8962237745063448,
+      "major_axis_length_px": 22.567938491789736,
+      "minor_axis_length_px": 10.011188033476211,
+      "orientation_rad": 0.06557425191352045,
+      "bbox": [
+        27,
+        49,
+        51,
+        62
+      ],
+      "centroid_yx": [
+        37.81935483870968,
+        56.29032258064516
+      ]
+    },
+    {
+      "region_id": 13,
+      "area_px": 61,
+      "perimeter_px": 41.89949493661166,
+      "eccentricity": 0.9869976305911786,
+      "major_axis_length_px": 22.41409181428186,
+      "minor_axis_length_px": 3.602724653942895,
+      "orientation_rad": 1.5541791485237892,
+      "bbox": [
+        38,
+        308,
+        43,
+        329
+      ],
+      "centroid_yx": [
+        40.0,
+        317.95081967213116
+      ]
+    },
+    {
+      "region_id": 14,
+      "area_px": 168,
+      "perimeter_px": 85.84062043356596,
+      "eccentricity": 0.9870844897601758,
+      "major_axis_length_px": 39.22441158826862,
+      "minor_axis_length_px": 6.28377155752853,
+      "orientation_rad": 1.5668074133125565,
+      "bbox": [
+        44,
+        63,
+        53,
+        100
+      ],
+      "centroid_yx": [
+        48.220238095238095,
+        82.35714285714286
+      ]
+    },
+    {
+      "region_id": 15,
+      "area_px": 301,
+      "perimeter_px": 130.3259018078045,
+      "eccentricity": 0.9884897596523733,
+      "major_axis_length_px": 59.3883596200773,
+      "minor_axis_length_px": 8.984733611777264,
+      "orientation_rad": 1.5026398156146483,
+      "bbox": [
+        51,
+        40,
+        65,
+        93
+      ],
+      "centroid_yx": [
+        59.04651162790697,
+        61.27906976744186
+      ]
+    },
+    {
+      "region_id": 16,
+      "area_px": 62,
+      "perimeter_px": 40.2842712474619,
+      "eccentricity": 0.9450403541982719,
+      "major_axis_length_px": 18.719605114263054,
+      "minor_axis_length_px": 6.120444354841237,
+      "orientation_rad": 1.3754381875322133,
+      "bbox": [
+        81,
+        427,
+        90,
+        444
+      ],
+      "centroid_yx": [
+        85.04838709677419,
+        434.35483870967744
+      ]
+    },
+    {
+      "region_id": 17,
+      "area_px": 87,
+      "perimeter_px": 51.87005768508881,
+      "eccentricity": 0.7493068958902945,
+      "major_axis_length_px": 15.590808935169445,
+      "minor_axis_length_px": 10.324590782754141,
+      "orientation_rad": -1.170660283995421,
+      "bbox": [
+        82,
+        51,
+        94,
+        66
+      ],
+      "centroid_yx": [
+        88.70114942528735,
+        59.41379310344828
+      ]
+    },
+    {
+      "region_id": 18,
+      "area_px": 130,
+      "perimeter_px": 50.62741699796952,
+      "eccentricity": 0.9002616945116083,
+      "major_axis_length_px": 20.538771013501027,
+      "minor_axis_length_px": 8.941536478932598,
+      "orientation_rad": 0.3236313670169675,
+      "bbox": [
+        87,
+        10,
+        107,
+        22
+      ],
+      "centroid_yx": [
+        95.37692307692308,
+        16.376923076923077
+      ]
+    },
+    {
+      "region_id": 19,
+      "area_px": 482,
+      "perimeter_px": 119.25483399593905,
+      "eccentricity": 0.8088735687447363,
+      "major_axis_length_px": 39.67877956628224,
+      "minor_axis_length_px": 23.330432375172546,
+      "orientation_rad": -0.6941662537756625,
+      "bbox": [
+        102,
+        349,
+        134,
+        379
+      ],
+      "centroid_yx": [
+        122.0311203319502,
+        367.350622406639
+      ]
+    },
+    {
+      "region_id": 20,
+      "area_px": 80,
+      "perimeter_px": 44.55634918610404,
+      "eccentricity": 0.972540415206482,
+      "major_axis_length_px": 21.901068941309674,
+      "minor_axis_length_px": 5.097124603931201,
+      "orientation_rad": 1.5216070981596281,
+      "bbox": [
+        103,
+        292,
+        109,
+        312
+      ],
+      "centroid_yx": [
+        105.7875,
+        301.2
+      ]
+    },
+    {
+      "region_id": 21,
+      "area_px": 102,
+      "perimeter_px": 65.89949493661166,
+      "eccentricity": 0.9922861483837992,
+      "major_axis_length_px": 34.20226243668168,
+      "minor_axis_length_px": 4.240004651525326,
+      "orientation_rad": -0.03739821919731429,
+      "bbox": [
+        108,
+        507,
+        141,
+        512
+      ],
+      "centroid_yx": [
+        126.70588235294117,
+        509.7549019607843
+      ]
+    },
+    {
+      "region_id": 22,
+      "area_px": 1846,
+      "perimeter_px": 548.1492782986674,
+      "eccentricity": 0.9865774572559907,
+      "major_axis_length_px": 221.16698816447354,
+      "minor_axis_length_px": 36.11523566301345,
+      "orientation_rad": 1.5136036306699787,
+      "bbox": [
+        116,
+        156,
+        160,
+        344
+      ],
+      "centroid_yx": [
+        131.7854821235103,
+        265.2361863488624
+      ]
+    },
+    {
+      "region_id": 23,
+      "area_px": 1714,
+      "perimeter_px": 512.6761902332486,
+      "eccentricity": 0.9026042056582382,
+      "major_axis_length_px": 104.89273231074051,
+      "minor_axis_length_px": 45.153323972673874,
+      "orientation_rad": -1.509806597302445,
+      "bbox": [
+        117,
+        0,
+        170,
+        103
+      ],
+      "centroid_yx": [
+        132.1271878646441,
+        46.817386231038505
+      ]
+    },
+    {
+      "region_id": 24,
+      "area_px": 247,
+      "perimeter_px": 71.89949493661166,
+      "eccentricity": 0.9585551071780765,
+      "major_axis_length_px": 34.20425264573198,
+      "minor_axis_length_px": 9.745037482682278,
+      "orientation_rad": 1.5567241405985102,
+      "bbox": [
+        121,
+        112,
+        131,
+        142
+      ],
+      "centroid_yx": [
+        125.40080971659918,
+        127.53036437246963
+      ]
+    },
+    {
+      "region_id": 25,
+      "area_px": 737,
+      "perimeter_px": 364.18376618407353,
+      "eccentricity": 0.9996881328911258,
+      "major_axis_length_px": 199.89336373176891,
+      "minor_axis_length_px": 4.991881852631955,
+      "orientation_rad": -0.02103436571710483,
+      "bbox": [
+        134,
+        184,
+        311,
+        192
+      ],
+      "centroid_yx": [
+        222.7449118046133,
+        187.81411126187245
+      ]
+    },
+    {
+      "region_id": 26,
+      "area_px": 139,
+      "perimeter_px": 65.89949493661166,
+      "eccentricity": 0.9879278959045823,
+      "major_axis_length_px": 34.12807281721698,
+      "minor_axis_length_px": 5.286930052092345,
+      "orientation_rad": 0.0154738826611771,
+      "bbox": [
+        134,
+        265,
+        166,
+        270
+      ],
+      "centroid_yx": [
+        150.25179856115108,
+        266.8345323741007
+      ]
+    },
+    {
+      "region_id": 27,
+      "area_px": 98,
+      "perimeter_px": 39.798989873223334,
+      "eccentricity": 0.7304260574215033,
+      "major_axis_length_px": 14.30274075978231,
+      "minor_axis_length_px": 9.768654402778688,
+      "orientation_rad": -0.001648546963150217,
+      "bbox": [
+        152,
+        73,
+        167,
+        83
+      ],
+      "centroid_yx": [
+        158.89795918367346,
+        78.48979591836735
+      ]
+    },
+    {
+      "region_id": 28,
+      "area_px": 488,
+      "perimeter_px": 192.92997820866105,
+      "eccentricity": 0.9202484022576355,
+      "major_axis_length_px": 54.83934013279264,
+      "minor_axis_length_px": 21.460538871396604,
+      "orientation_rad": -0.7406452581270199,
+      "bbox": [
+        179,
+        47,
+        224,
+        84
+      ],
+      "centroid_yx": [
+        202.14139344262296,
+        67.51024590163935
+      ]
+    },
+    {
+      "region_id": 29,
+      "area_px": 127,
+      "perimeter_px": 55.35533905932738,
+      "eccentricity": 0.7441868010714686,
+      "major_axis_length_px": 17.912518914244043,
+      "minor_axis_length_px": 11.965053204583482,
+      "orientation_rad": -0.48452360692865837,
+      "bbox": [
+        182,
+        111,
+        200,
+        126
+      ],
+      "centroid_yx": [
+        192.03937007874015,
+        119.07086614173228
+      ]
+    },
+    {
+      "region_id": 30,
+      "area_px": 81,
+      "perimeter_px": 43.45584412271571,
+      "eccentricity": 0.6941380515124463,
+      "major_axis_length_px": 14.078207892082734,
+      "minor_axis_length_px": 10.134083961116588,
+      "orientation_rad": -0.6988312986073494,
+      "bbox": [
+        184,
+        88,
+        197,
+        101
+      ],
+      "centroid_yx": [
+        191.69135802469137,
+        95.55555555555556
+      ]
+    },
+    {
+      "region_id": 31,
+      "area_px": 2044,
+      "perimeter_px": 592.405158315133,
+      "eccentricity": 0.8788136660980975,
+      "major_axis_length_px": 112.94890569605475,
+      "minor_axis_length_px": 53.89527678335028,
+      "orientation_rad": -0.4414247387997387,
+      "bbox": [
+        187,
+        424,
+        281,
+        496
+      ],
+      "centroid_yx": [
+        241.21771037181995,
+        454.01810176125247
+      ]
+    },
+    {
+      "region_id": 32,
+      "area_px": 294,
+      "perimeter_px": 133.35533905932738,
+      "eccentricity": 0.994853892247738,
+      "major_axis_length_px": 66.05245526447403,
+      "minor_axis_length_px": 6.692431729297805,
+      "orientation_rad": -1.5385917567376668,
+      "bbox": [
+        188,
+        285,
+        199,
+        343
+      ],
+      "centroid_yx": [
+        193.70408163265307,
+        312.4421768707483
+      ]
+    },
+    {
+      "region_id": 33,
+      "area_px": 202,
+      "perimeter_px": 78.08326112068524,
+      "eccentricity": 0.8099434871023685,
+      "major_axis_length_px": 24.817725620715485,
+      "minor_axis_length_px": 14.555792791144324,
+      "orientation_rad": -0.6310679794900347,
+      "bbox": [
+        203,
+        122,
+        226,
+        141
+      ],
+      "centroid_yx": [
+        213.15346534653466,
+        133.74257425742573
+      ]
+    },
+    {
+      "region_id": 34,
+      "area_px": 568,
+      "perimeter_px": 186.36753236814712,
+      "eccentricity": 0.8878349363791821,
+      "major_axis_length_px": 47.84248168687357,
+      "minor_axis_length_px": 22.01529515109592,
+      "orientation_rad": 1.4582194979293734,
+      "bbox": [
+        214,
+        285,
+        236,
+        339
+      ],
+      "centroid_yx": [
+        223.18661971830986,
+        310.84154929577466
+      ]
+    },
+    {
+      "region_id": 35,
+      "area_px": 76,
+      "perimeter_px": 33.10660171779821,
+      "eccentricity": 0.7719446103484977,
+      "major_axis_length_px": 12.582970953076646,
+      "minor_axis_length_px": 7.998866256202262,
+      "orientation_rad": -0.8007704770680468,
+      "bbox": [
+        219,
+        0,
+        230,
+        10
+      ],
+      "centroid_yx": [
+        223.6578947368421,
+        4.0394736842105265
+      ]
+    },
+    {
+      "region_id": 36,
+      "area_px": 70,
+      "perimeter_px": 41.79898987322333,
+      "eccentricity": 0.9088781849024024,
+      "major_axis_length_px": 17.314583044401278,
+      "minor_axis_length_px": 7.22124909474308,
+      "orientation_rad": 1.5448228837054712,
+      "bbox": [
+        219,
+        161,
+        228,
+        178
+      ],
+      "centroid_yx": [
+        221.75714285714287,
+        168.24285714285713
+      ]
+    },
+    {
+      "region_id": 37,
+      "area_px": 75,
+      "perimeter_px": 37.21320343559643,
+      "eccentricity": 0.8955565547636113,
+      "major_axis_length_px": 15.755797709875495,
+      "minor_axis_length_px": 7.010505978960268,
+      "orientation_rad": 1.117070023714674,
+      "bbox": [
+        227,
+        405,
+        237,
+        420
+      ],
+      "centroid_yx": [
+        231.76,
+        411.4266666666667
+      ]
+    },
+    {
+      "region_id": 38,
+      "area_px": 1126,
+      "perimeter_px": 277.9066376115481,
+      "eccentricity": 0.9772447461582019,
+      "major_axis_length_px": 92.07550511831029,
+      "minor_axis_length_px": 19.530581200599713,
+      "orientation_rad": -0.03598484068203735,
+      "bbox": [
+        229,
+        118,
+        319,
+        140
+      ],
+      "centroid_yx": [
+        277.3454706927176,
+        130.95381882770872
+      ]
+    },
+    {
+      "region_id": 39,
+      "area_px": 459,
+      "perimeter_px": 104.22539674441617,
+      "eccentricity": 0.7066265839487461,
+      "major_axis_length_px": 30.72390191800442,
+      "minor_axis_length_px": 21.73982291121841,
+      "orientation_rad": -1.5380867754268428,
+      "bbox": [
+        231,
+        206,
+        257,
+        241
+      ],
+      "centroid_yx": [
+        241.83006535947712,
+        220.91067538126362
+      ]
+    },
+    {
+      "region_id": 40,
+      "area_px": 617,
+      "perimeter_px": 288.2842712474619,
+      "eccentricity": 0.9994403680430364,
+      "major_axis_length_px": 157.64115913621083,
+      "minor_axis_length_px": 5.273210410185732,
+      "orientation_rad": -0.01861343548717488,
+      "bbox": [
+        235,
+        102,
+        376,
+        109
+      ],
+      "centroid_yx": [
+        306.39059967585086,
+        104.70664505672609
+      ]
+    },
+    {
+      "region_id": 41,
+      "area_px": 115,
+      "perimeter_px": 51.941125496954285,
+      "eccentricity": 0.9436066530269276,
+      "major_axis_length_px": 22.248748377432634,
+      "minor_axis_length_px": 7.365864210130026,
+      "orientation_rad": 1.0978851498187494,
+      "bbox": [
+        236,
+        5,
+        249,
+        24
+      ],
+      "centroid_yx": [
+        242.15652173913043,
+        14.469565217391304
+      ]
+    },
+    {
+      "region_id": 42,
+      "area_px": 318,
+      "perimeter_px": 109.94112549695429,
+      "eccentricity": 0.9825501113214639,
+      "major_axis_length_px": 48.49143916356231,
+      "minor_axis_length_px": 9.01931366557303,
+      "orientation_rad": 1.5440252779285275,
+      "bbox": [
+        240,
+        277,
+        252,
+        328
+      ],
+      "centroid_yx": [
+        245.46540880503144,
+        301.84276729559747
+      ]
+    },
+    {
+      "region_id": 43,
+      "area_px": 99,
+      "perimeter_px": 43.45584412271571,
+      "eccentricity": 0.8889190453973321,
+      "major_axis_length_px": 17.51867005051499,
+      "minor_axis_length_px": 8.02467786513777,
+      "orientation_rad": 0.27331991806109884,
+      "bbox": [
+        248,
+        38,
+        264,
+        48
+      ],
+      "centroid_yx": [
+        255.72727272727272,
+        42.111111111111114
+      ]
+    },
+    {
+      "region_id": 44,
+      "area_px": 208,
+      "perimeter_px": 83.25483399593904,
+      "eccentricity": 0.9242544649705181,
+      "major_axis_length_px": 30.255566359250135,
+      "minor_axis_length_px": 11.55087960571085,
+      "orientation_rad": -1.4839804963153744,
+      "bbox": [
+        257,
+        288,
+        270,
+        318
+      ],
+      "centroid_yx": [
+        263.2692307692308,
+        301.46634615384613
+      ]
+    },
+    {
+      "region_id": 45,
+      "area_px": 101,
+      "perimeter_px": 48.2842712474619,
+      "eccentricity": 0.8995121906569932,
+      "major_axis_length_px": 18.65079879940648,
+      "minor_axis_length_px": 8.148453075169348,
+      "orientation_rad": 0.5851840716189936,
+      "bbox": [
+        269,
+        318,
+        286,
+        330
+      ],
+      "centroid_yx": [
+        277.7722772277228,
+        323.5247524752475
+      ]
+    },
+    {
+      "region_id": 46,
+      "area_px": 86,
+      "perimeter_px": 40.72792206135785,
+      "eccentricity": 0.9501379064779878,
+      "major_axis_length_px": 19.15617593107781,
+      "minor_axis_length_px": 5.973470640792117,
+      "orientation_rad": -0.13667678029175023,
+      "bbox": [
+        272,
+        0,
+        290,
+        7
+      ],
+      "centroid_yx": [
+        280.2325581395349,
+        2.2674418604651163
+      ]
+    },
+    {
+      "region_id": 47,
+      "area_px": 64,
+      "perimeter_px": 41.45584412271571,
+      "eccentricity": 0.9591414287217479,
+      "major_axis_length_px": 20.034791108671094,
+      "minor_axis_length_px": 5.668384490479951,
+      "orientation_rad": -1.0522352864612565,
+      "bbox": [
+        279,
+        424,
+        292,
+        439
+      ],
+      "centroid_yx": [
+        284.703125,
+        429.640625
+      ]
+    },
+    {
+      "region_id": 48,
+      "area_px": 505,
+      "perimeter_px": 203.6812408671319,
+      "eccentricity": 0.7767182771950283,
+      "major_axis_length_px": 59.714989001835534,
+      "minor_axis_length_px": 37.611376573711816,
+      "orientation_rad": 1.2009001736428901,
+      "bbox": [
+        287,
+        35,
+        325,
+        95
+      ],
+      "centroid_yx": [
+        311.990099009901,
+        57.524752475247524
+      ]
+    },
+    {
+      "region_id": 49,
+      "area_px": 64,
+      "perimeter_px": 39.45584412271571,
+      "eccentricity": 0.9357383419936618,
+      "major_axis_length_px": 17.12632004669265,
+      "minor_axis_length_px": 6.040367261868552,
+      "orientation_rad": 0.9014538501986861,
+      "bbox": [
+        288,
+        65,
+        301,
+        78
+      ],
+      "centroid_yx": [
+        294.59375,
+        70.1875
+      ]
+    },
+    {
+      "region_id": 50,
+      "area_px": 421,
+      "perimeter_px": 119.22539674441619,
+      "eccentricity": 0.8715069809835765,
+      "major_axis_length_px": 38.28309763437663,
+      "minor_axis_length_px": 18.773383991377898,
+      "orientation_rad": 0.47464048552108834,
+      "bbox": [
+        291,
+        280,
+        323,
+        309
+      ],
+      "centroid_yx": [
+        306.86935866983373,
+        292.4964370546318
+      ]
+    },
+    {
+      "region_id": 51,
+      "area_px": 121,
+      "perimeter_px": 51.55634918610404,
+      "eccentricity": 0.7417272059577174,
+      "major_axis_length_px": 17.40411160710721,
+      "minor_axis_length_px": 11.67296700261625,
+      "orientation_rad": 0.32638041603341833,
+      "bbox": [
+        292,
+        0,
+        308,
+        14
+      ],
+      "centroid_yx": [
+        301.40495867768595,
+        4.454545454545454
+      ]
+    },
+    {
+      "region_id": 52,
+      "area_px": 109,
+      "perimeter_px": 56.526911934581186,
+      "eccentricity": 0.9418211357883765,
+      "major_axis_length_px": 24.02392731637769,
+      "minor_axis_length_px": 8.074789998915838,
+      "orientation_rad": -1.1111434725951341,
+      "bbox": [
+        297,
+        395,
+        312,
+        414
+      ],
+      "centroid_yx": [
+        305.29357798165137,
+        404.92660550458714
+      ]
+    },
+    {
+      "region_id": 53,
+      "area_px": 161,
+      "perimeter_px": 77.698484809835,
+      "eccentricity": 0.9877810462687783,
+      "major_axis_length_px": 37.53482748164958,
+      "minor_axis_length_px": 5.8497284590678404,
+      "orientation_rad": 1.5559540641837228,
+      "bbox": [
+        305,
+        61,
+        312,
+        96
+      ],
+      "centroid_yx": [
+        308.0621118012422,
+        78.37267080745342
+      ]
+    },
+    {
+      "region_id": 54,
+      "area_px": 83,
+      "perimeter_px": 45.45584412271571,
+      "eccentricity": 0.9401592515949615,
+      "major_axis_length_px": 22.88592068987127,
+      "minor_axis_length_px": 7.798042293752783,
+      "orientation_rad": 1.3243468626857926,
+      "bbox": [
+        311,
+        431,
+        322,
+        451
+      ],
+      "centroid_yx": [
+        315.56626506024094,
+        439.7831325301205
+      ]
+    },
+    {
+      "region_id": 55,
+      "area_px": 169,
+      "perimeter_px": 78.76955262170047,
+      "eccentricity": 0.8832144026301985,
+      "major_axis_length_px": 28.888592224616346,
+      "minor_axis_length_px": 13.547866404611522,
+      "orientation_rad": -0.9579631767461948,
+      "bbox": [
+        314,
+        0,
+        336,
+        23
+      ],
+      "centroid_yx": [
+        326.1183431952663,
+        11.76923076923077
+      ]
+    },
+    {
+      "region_id": 56,
+      "area_px": 220,
+      "perimeter_px": 110.97056274847715,
+      "eccentricity": 0.9963860627804584,
+      "major_axis_length_px": 59.04060299834306,
+      "minor_axis_length_px": 5.014912397278277,
+      "orientation_rad": -0.017229270108753494,
+      "bbox": [
+        317,
+        183,
+        371,
+        189
+      ],
+      "centroid_yx": [
+        343.7818181818182,
+        185.38181818181818
+      ]
+    },
+    {
+      "region_id": 57,
+      "area_px": 72,
+      "perimeter_px": 40.87005768508881,
+      "eccentricity": 0.924430450025134,
+      "major_axis_length_px": 17.044771440669017,
+      "minor_axis_length_px": 6.500035222472149,
+      "orientation_rad": -1.549979953788579,
+      "bbox": [
+        327,
+        60,
+        335,
+        77
+      ],
+      "centroid_yx": [
+        330.3611111111111,
+        68.625
+      ]
+    },
+    {
+      "region_id": 58,
+      "area_px": 73,
+      "perimeter_px": 41.31370849898476,
+      "eccentricity": 0.9758136064661443,
+      "major_axis_length_px": 20.68740337840018,
+      "minor_axis_length_px": 4.522353699883273,
+      "orientation_rad": -1.5351583420865493,
+      "bbox": [
+        327,
+        350,
+        332,
+        370
+      ],
+      "centroid_yx": [
+        329.4109589041096,
+        359.5068493150685
+      ]
+    },
+    {
+      "region_id": 59,
+      "area_px": 159,
+      "perimeter_px": 55.35533905932738,
+      "eccentricity": 0.8805583442343847,
+      "major_axis_length_px": 21.509798636242813,
+      "minor_axis_length_px": 10.194305830127075,
+      "orientation_rad": 0.7470360313583726,
+      "bbox": [
+        328,
+        286,
+        346,
+        303
+      ],
+      "centroid_yx": [
+        337.02515723270443,
+        293.6792452830189
+      ]
+    },
+    {
+      "region_id": 60,
+      "area_px": 60,
+      "perimeter_px": 37.97056274847714,
+      "eccentricity": 0.9195821358067613,
+      "major_axis_length_px": 16.36030335665366,
+      "minor_axis_length_px": 6.427927493060635,
+      "orientation_rad": -1.163821760911614,
+      "bbox": [
+        329,
+        449,
+        339,
+        463
+      ],
+      "centroid_yx": [
+        334.6333333333333,
+        456.56666666666666
+      ]
+    },
+    {
+      "region_id": 61,
+      "area_px": 359,
+      "perimeter_px": 138.5685424949238,
+      "eccentricity": 0.9621410951637376,
+      "major_axis_length_px": 50.97534943599919,
+      "minor_axis_length_px": 13.89342598569738,
+      "orientation_rad": -1.5428940172739933,
+      "bbox": [
+        331,
+        199,
+        351,
+        254
+      ],
+      "centroid_yx": [
+        337.68802228412255,
+        224.9359331476323
+      ]
+    },
+    {
+      "region_id": 62,
+      "area_px": 111,
+      "perimeter_px": 42.384776310850235,
+      "eccentricity": 0.4730227276223048,
+      "major_axis_length_px": 13.339293396067513,
+      "minor_axis_length_px": 11.752587449310463,
+      "orientation_rad": -1.179365751069666,
+      "bbox": [
+        341,
+        49,
+        352,
+        63
+      ],
+      "centroid_yx": [
+        346.7567567567568,
+        55.873873873873876
+      ]
+    },
+    {
+      "region_id": 63,
+      "area_px": 128,
+      "perimeter_px": 51.45584412271572,
+      "eccentricity": 0.911361295219678,
+      "major_axis_length_px": 20.949344296551377,
+      "minor_axis_length_px": 8.62290355576648,
+      "orientation_rad": 0.2564601151656796,
+      "bbox": [
+        346,
+        7,
+        367,
+        18
+      ],
+      "centroid_yx": [
+        354.5703125,
+        12.609375
+      ]
+    },
+    {
+      "region_id": 64,
+      "area_px": 375,
+      "perimeter_px": 123.39696961966999,
+      "eccentricity": 0.9332784762654693,
+      "major_axis_length_px": 43.22097922085028,
+      "minor_axis_length_px": 15.522968919627358,
+      "orientation_rad": 1.489148688674924,
+      "bbox": [
+        347,
+        281,
+        370,
+        325
+      ],
+      "centroid_yx": [
+        361.368,
+        302.1173333333333
+      ]
+    },
+    {
+      "region_id": 65,
+      "area_px": 178,
+      "perimeter_px": 55.89949493661166,
+      "eccentricity": 0.923620711320718,
+      "major_axis_length_px": 24.74965664096293,
+      "minor_axis_length_px": 9.486733599319685,
+      "orientation_rad": -1.5697043005289488,
+      "bbox": [
+        376,
+        0,
+        386,
+        22
+      ],
+      "centroid_yx": [
+        380.5842696629214,
+        10.089887640449438
+      ]
+    },
+    {
+      "region_id": 66,
+      "area_px": 314,
+      "perimeter_px": 168.08326112068522,
+      "eccentricity": 0.9833197542185925,
+      "major_axis_length_px": 68.3228072000621,
+      "minor_axis_length_px": 12.426914022868974,
+      "orientation_rad": 0.06410498010368132,
+      "bbox": [
+        391,
+        176,
+        456,
+        196
+      ],
+      "centroid_yx": [
+        425.2579617834395,
+        184.0764331210191
+      ]
+    },
+    {
+      "region_id": 67,
+      "area_px": 253,
+      "perimeter_px": 132.6274169979695,
+      "eccentricity": 0.9973968253607575,
+      "major_axis_length_px": 68.68257969240904,
+      "minor_axis_length_px": 4.952567788544652,
+      "orientation_rad": -0.029731615753801,
+      "bbox": [
+        392,
+        257,
+        456,
+        264
+      ],
+      "centroid_yx": [
+        424.0355731225296,
+        260.32411067193675
+      ]
+    },
+    {
+      "region_id": 68,
+      "area_px": 520,
+      "perimeter_px": 247.4558441227157,
+      "eccentricity": 0.9991883610510862,
+      "major_axis_length_px": 138.29484677012888,
+      "minor_axis_length_px": 5.570758026718777,
+      "orientation_rad": 0.01003526081660448,
+      "bbox": [
+        393,
+        335,
+        512,
+        342
+      ],
+      "centroid_yx": [
+        454.1307692307692,
+        337.61538461538464
+      ]
+    },
+    {
+      "region_id": 69,
+      "area_px": 110,
+      "perimeter_px": 46.2842712474619,
+      "eccentricity": 0.7609655646450911,
+      "major_axis_length_px": 16.139236067114823,
+      "minor_axis_length_px": 10.471011601718743,
+      "orientation_rad": 0.4420957695399278,
+      "bbox": [
+        396,
+        284,
+        412,
+        297
+      ],
+      "centroid_yx": [
+        404.8636363636364,
+        289.8
+      ]
+    },
+    {
+      "region_id": 70,
+      "area_px": 93,
+      "perimeter_px": 51.87005768508881,
+      "eccentricity": 0.9132233704781192,
+      "major_axis_length_px": 21.166529919038016,
+      "minor_axis_length_px": 8.624499320243995,
+      "orientation_rad": 1.5020919150247412,
+      "bbox": [
+        399,
+        0,
+        409,
+        19
+      ],
+      "centroid_yx": [
+        403.83870967741933,
+        8.849462365591398
+      ]
+    },
+    {
+      "region_id": 71,
+      "area_px": 251,
+      "perimeter_px": 119.11269837220809,
+      "eccentricity": 0.994637895825271,
+      "major_axis_length_px": 59.33396408908278,
+      "minor_axis_length_px": 6.136249658755158,
+      "orientation_rad": -0.003920194318495885,
+      "bbox": [
+        400,
+        23,
+        456,
+        31
+      ],
+      "centroid_yx": [
+        426.8964143426295,
+        25.56972111553785
+      ]
+    },
+    {
+      "region_id": 72,
+      "area_px": 77,
+      "perimeter_px": 40.04163056034261,
+      "eccentricity": 0.9253545196769631,
+      "major_axis_length_px": 17.46553872653175,
+      "minor_axis_length_px": 6.621236476311486,
+      "orientation_rad": -0.9715419027533317,
+      "bbox": [
+        407,
+        221,
+        418,
+        236
+      ],
+      "centroid_yx": [
+        411.961038961039,
+        227.84415584415584
+      ]
+    },
+    {
+      "region_id": 73,
+      "area_px": 125,
+      "perimeter_px": 57.04163056034261,
+      "eccentricity": 0.4678186713030253,
+      "major_axis_length_px": 15.113612508506826,
+      "minor_axis_length_px": 13.357780539547203,
+      "orientation_rad": 1.403624740636996,
+      "bbox": [
+        421,
+        0,
+        435,
+        14
+      ],
+      "centroid_yx": [
+        426.36,
+        6.776
+      ]
+    },
+    {
+      "region_id": 74,
+      "area_px": 62,
+      "perimeter_px": 28.970562748477143,
+      "eccentricity": 0.7812694905797565,
+      "major_axis_length_px": 11.426783169155824,
+      "minor_axis_length_px": 7.13252796904707,
+      "orientation_rad": 0.2715711683816138,
+      "bbox": [
+        441,
+        169,
+        452,
+        178
+      ],
+      "centroid_yx": [
+        446.06451612903226,
+        172.5483870967742
+      ]
+    },
+    {
+      "region_id": 75,
+      "area_px": 500,
+      "perimeter_px": 146.71067811865476,
+      "eccentricity": 0.6497993799649138,
+      "major_axis_length_px": 35.52717695075426,
+      "minor_axis_length_px": 27.004411823066892,
+      "orientation_rad": -1.5340629258927676,
+      "bbox": [
+        446,
+        442,
+        482,
+        481
+      ],
+      "centroid_yx": [
+        465.322,
+        457.784
+      ]
+    },
+    {
+      "region_id": 76,
+      "area_px": 315,
+      "perimeter_px": 84.32590180780451,
+      "eccentricity": 0.6567347920132136,
+      "major_axis_length_px": 25.006869345440542,
+      "minor_axis_length_px": 18.85822074245893,
+      "orientation_rad": -0.06562412492884993,
+      "bbox": [
+        452,
+        295,
+        479,
+        317
+      ],
+      "centroid_yx": [
+        464.7650793650794,
+        306.41269841269843
+      ]
+    },
+    {
+      "region_id": 77,
+      "area_px": 75,
+      "perimeter_px": 44.48528137423857,
+      "eccentricity": 0.9794504827688955,
+      "major_axis_length_px": 22.343470963930113,
+      "minor_axis_length_px": 4.506338098921313,
+      "orientation_rad": 1.5342493165667157,
+      "bbox": [
+        461,
+        0,
+        466,
+        21
+      ],
+      "centroid_yx": [
+        462.41333333333336,
+        10.226666666666667
+      ]
+    },
+    {
+      "region_id": 78,
+      "area_px": 286,
+      "perimeter_px": 118.87005768508881,
+      "eccentricity": 0.9923202548975502,
+      "major_axis_length_px": 61.73381488692194,
+      "minor_axis_length_px": 7.63617887921643,
+      "orientation_rad": -0.07758368013784704,
+      "bbox": [
+        461,
+        18,
+        512,
+        30
+      ],
+      "centroid_yx": [
+        487.8111888111888,
+        25.527972027972027
+      ]
+    },
+    {
+      "region_id": 79,
+      "area_px": 487,
+      "perimeter_px": 175.9827560572969,
+      "eccentricity": 0.9150844169579352,
+      "major_axis_length_px": 65.59673605461477,
+      "minor_axis_length_px": 26.45269286933314,
+      "orientation_rad": 0.32086248117104377,
+      "bbox": [
+        461,
+        95,
+        512,
+        128
+      ],
+      "centroid_yx": [
+        490.09445585215605,
+        107.52977412731006
+      ]
+    },
+    {
+      "region_id": 80,
+      "area_px": 809,
+      "perimeter_px": 216.92388155425118,
+      "eccentricity": 0.9085657090608826,
+      "major_axis_length_px": 62.21884901408937,
+      "minor_axis_length_px": 25.991424470344672,
+      "orientation_rad": -0.035747588233049334,
+      "bbox": [
+        461,
+        126,
+        512,
+        158
+      ],
+      "centroid_yx": [
+        486.3016069221261,
+        142.03337453646478
+      ]
+    },
+    {
+      "region_id": 81,
+      "area_px": 311,
+      "perimeter_px": 132.5269119345812,
+      "eccentricity": 0.9831350679943005,
+      "major_axis_length_px": 61.63286079880083,
+      "minor_axis_length_px": 11.271475494951211,
+      "orientation_rad": -0.11704212372649236,
+      "bbox": [
+        461,
+        174,
+        512,
+        188
+      ],
+      "centroid_yx": [
+        489.90675241157555,
+        182.83601286173632
+      ]
+    },
+    {
+      "region_id": 82,
+      "area_px": 219,
+      "perimeter_px": 106.59797974644665,
+      "eccentricity": 0.9552823453374193,
+      "major_axis_length_px": 41.482346891497336,
+      "minor_axis_length_px": 12.266130115876408,
+      "orientation_rad": 1.4759849500114697,
+      "bbox": [
+        461,
+        198,
+        475,
+        242
+      ],
+      "centroid_yx": [
+        464.1506849315069,
+        222.52511415525115
+      ]
+    },
+    {
+      "region_id": 83,
+      "area_px": 290,
+      "perimeter_px": 110.72792206135784,
+      "eccentricity": 0.9933542686124929,
+      "major_axis_length_px": 57.613002876782254,
+      "minor_axis_length_px": 6.631078190920414,
+      "orientation_rad": -0.0205954276778296,
+      "bbox": [
+        461,
+        259,
+        512,
+        266
+      ],
+      "centroid_yx": [
+        485.4793103448276,
+        261.5344827586207
+      ]
+    },
+    {
+      "region_id": 84,
+      "area_px": 326,
+      "perimeter_px": 90.1543289325507,
+      "eccentricity": 0.7134552217081933,
+      "major_axis_length_px": 26.43991901327596,
+      "minor_axis_length_px": 18.52647307424516,
+      "orientation_rad": 0.8863227362205344,
+      "bbox": [
+        462,
+        44,
+        487,
+        71
+      ],
+      "centroid_yx": [
+        476.10122699386505,
+        53.469325153374236
+      ]
+    },
+    {
+      "region_id": 85,
+      "area_px": 233,
+      "perimeter_px": 73.35533905932738,
+      "eccentricity": 0.8835033020046658,
+      "major_axis_length_px": 27.769932391894177,
+      "minor_axis_length_px": 13.00812864571025,
+      "orientation_rad": -0.538087523082178,
+      "bbox": [
+        469,
+        228,
+        491,
+        248
+      ],
+      "centroid_yx": [
+        480.3090128755365,
+        238.75965665236052
+      ]
+    },
+    {
+      "region_id": 86,
+      "area_px": 270,
+      "perimeter_px": 119.53910524340094,
+      "eccentricity": 0.7068709754084417,
+      "major_axis_length_px": 33.19058921208872,
+      "minor_axis_length_px": 23.47711462703988,
+      "orientation_rad": -1.1479878512554875,
+      "bbox": [
+        469,
+        276,
+        498,
+        310
+      ],
+      "centroid_yx": [
+        484.2111111111111,
+        290.31111111111113
+      ]
+    },
+    {
+      "region_id": 87,
+      "area_px": 92,
+      "perimeter_px": 44.8700576850888,
+      "eccentricity": 0.9361447701943479,
+      "major_axis_length_px": 19.388242579170697,
+      "minor_axis_length_px": 6.817193082558292,
+      "orientation_rad": 0.3296192027727013,
+      "bbox": [
+        487,
+        458,
+        506,
+        468
+      ],
+      "centroid_yx": [
+        497.0108695652174,
+        461.8804347826087
+      ]
+    },
+    {
+      "region_id": 88,
+      "area_px": 111,
+      "perimeter_px": 42.142135623730944,
+      "eccentricity": 0.7937938425576913,
+      "major_axis_length_px": 15.709996213360188,
+      "minor_axis_length_px": 9.55461428587909,
+      "orientation_rad": 1.2392501461359,
+      "bbox": [
+        490,
+        0,
+        501,
+        15
+      ],
+      "centroid_yx": [
+        495.8018018018018,
+        6.72972972972973
+      ]
+    },
+    {
+      "region_id": 89,
+      "area_px": 78,
+      "perimeter_px": 39.55634918610404,
+      "eccentricity": 0.825492861053373,
+      "major_axis_length_px": 15.211835411186696,
+      "minor_axis_length_px": 8.585750946029886,
+      "orientation_rad": -0.47591709036718144,
+      "bbox": [
+        498,
+        345,
+        512,
+        356
+      ],
+      "centroid_yx": [
+        503.12820512820514,
+        349.20512820512823
+      ]
+    }
+  ]
+}

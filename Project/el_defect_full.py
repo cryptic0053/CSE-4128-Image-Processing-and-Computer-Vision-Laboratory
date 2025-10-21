@@ -1,50 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Electroluminescence (EL) Solar Panel Defect Detection — Full Classical CV Pipeline
 
-Implements ALL requested components:
-- Convolution: Gaussian denoising
-- Segmentation: Adaptive Gaussian thresholding (cell boundaries)
-- Edge Detection: Canny (cracks/line defects)
-- Thresholding: Binary (Otsu + Sauvola, combined per-pixel)
-- Morphology: open/close + small-object removal
-- Frequency Domain: FFT magnitude + optional notch filtering for periodic patterns
-- Region Descriptors: area, perimeter, eccentricity, axes, orientation, centroid
-- Crack Length: skeleton length
-- Hough Line Transform: precise grid/busbar detection (and suppression from defects)
-- Busbar Integrity: continuity score from Canny responses along vertical Hough lines
-- Sub-millimeter precision: pass --mm_per_px to convert pixel-based metrics
-
-Outputs to --outdir:
-  00_input.png
-  01_clahe.png
-  02_gaussian.png
-  03_fft_mag.png
-  03b_notch.png            (if --notch yes)
-  04_canny.png
-  05_cell_boundaries.png
-  06_grid_mask.png
-  07_crack_score.png
-  08_defect_mask_raw.png
-  09_defect_mask_clean.png
-  10_overlay.png
-  11_skeleton.png
-  metrics.json
-  regions_metrics.csv
-
-Example (PowerShell):
-  python .\el_defect_full.py `
-    --image ".\ARTS_00001_r6_c2.png" `
-    --outdir ".\results_full" `
-    --gauss_ksize 5 --gauss_sigma 1.0 `
-    --adaptive_block 35 --adaptive_C 5 `
-    --canny_low 25 --canny_high 90 `
-    --hough_threshold 140 --hough_minlen 110 --hough_gap 8 `
-    --angle_dev 15 --grid_dilate 3 `
-    --open_kernel 3 --close_kernel 3 --min_area 60 `
-    --notch yes --notch_radius 6 --notch_offsets 0 35 0 -35 35 0 -35 0
-"""
 
 import os, json, csv, argparse
 from typing import List, Tuple
@@ -56,12 +12,12 @@ from skimage.filters import threshold_otsu, threshold_sauvola, sato
 from skimage.color import label2rgb, gray2rgb
 
 
-# ---------------------------- I/O helpers ----------------------------
+#I/O helpers
 
-def ensure_dir(p: str) -> None:
+def ensure_dir(p: str) -> None:#avoid missing folder
     os.makedirs(p, exist_ok=True)
 
-def imread_gray(path: str) -> np.ndarray:
+def imread_gray(path: str) -> np.ndarray:#consistent image scale
     img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
     if img is None:
         raise FileNotFoundError(f"Could not read image: {path}")
@@ -72,16 +28,16 @@ def imread_gray(path: str) -> np.ndarray:
         img /= 255.0
     return img
 
-def to_uint8(img: np.ndarray) -> np.ndarray:
+def to_uint8(img: np.ndarray) -> np.ndarray:#OpenCV type safety
     img = np.clip(img, 0, 1)
     return (img * 255).astype(np.uint8)
 
-def save_gray(path: str, img: np.ndarray) -> None:
+def save_gray(path: str, img: np.ndarray) -> None:#deb output dumps
     if img.dtype != np.uint8:
         img = to_uint8(img)
     cv2.imwrite(path, img)
 
-def save_fig_gray(path: str, img: np.ndarray) -> None:
+def save_fig_gray(path: str, img: np.ndarray) -> None:#stable grayscale viz
     plt.figure(figsize=(7, 7))
     plt.imshow(img, cmap="gray", vmin=0, vmax=1 if img.dtype!=np.uint8 else None)
     plt.axis("off")
@@ -90,20 +46,20 @@ def save_fig_gray(path: str, img: np.ndarray) -> None:
     plt.close()
 
 
-# ----------------------- Core processing blocks -----------------------
+#Core processing blocks
 
-def clahe(img: np.ndarray, clip: float = 2.0, tiles: Tuple[int,int]=(8,8)) -> np.ndarray:
+def clahe(img: np.ndarray, clip: float = 2.0, tiles: Tuple[int,int]=(8,8)) -> np.ndarray:#enhance faint cracks(Contrast Limited Adaptive Histogram Equalization)
     u8 = to_uint8(img)
     c = cv2.createCLAHE(clipLimit=clip, tileGridSize=tiles)
     out = c.apply(u8).astype(np.float32) / 255.0
     return out
 
-def gaussian(img: np.ndarray, ksize: int = 5, sigma: float = 1.0) -> np.ndarray:
+def gaussian(img: np.ndarray, ksize: int = 5, sigma: float = 1.0) -> np.ndarray:#reduce sensor noise,denoise gently without blurring lines too much.
     u8 = to_uint8(img)
     g = cv2.GaussianBlur(u8, (ksize, ksize), sigmaX=sigma)
     return g.astype(np.float32) / 255.0
 
-def adaptive_gaussian_threshold(img: np.ndarray, block_size: int = 35, C: int = 5) -> np.ndarray:
+def adaptive_gaussian_threshold(img: np.ndarray, block_size: int = 35, C: int = 5) -> np.ndarray:#segment cell grid,cell boundary map
     if block_size % 2 == 0: block_size += 1
     block_size = max(3, block_size)
     u8 = to_uint8(img)
@@ -111,22 +67,22 @@ def adaptive_gaussian_threshold(img: np.ndarray, block_size: int = 35, C: int = 
                                cv2.THRESH_BINARY, block_size, C)
     return (th > 0).astype(np.float32)
 
-def canny_edges(img: np.ndarray, low: int, high: int) -> np.ndarray:
+def canny_edges(img: np.ndarray, low: int, high: int) -> np.ndarray:#thin edges for lines/cracks,
     return cv2.Canny(to_uint8(img), threshold1=low, threshold2=high)
 
-def black_hat(img: np.ndarray, radius: int = 3) -> np.ndarray:
+def black_hat(img: np.ndarray, radius: int = 3) -> np.ndarray:#thin dark ridges enhancement.highlight micro-cracks
     se = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2*radius+1, 2*radius+1))
     u8 = to_uint8(img)
     bh = cv2.morphologyEx(u8, cv2.MORPH_BLACKHAT, se)
     return (bh.astype(np.float32) / 255.0)
 
-def fft_magnitude(img: np.ndarray) -> np.ndarray:
+def fft_magnitude(img: np.ndarray) -> np.ndarray:#periodicity view (see grid frequencies),diagnose grid energy
     F = np.fft.fftshift(np.fft.fft2(img))
     mag = np.log1p(np.abs(F))
     mag = (mag - mag.min()) / (mag.max() - mag.min() + 1e-8)
     return mag
 
-def notch_filter_fft(img: np.ndarray, offsets: List[Tuple[int,int]], radius: int = 6) -> np.ndarray:
+def notch_filter_fft(img: np.ndarray, offsets: List[Tuple[int,int]], radius: int = 6) -> np.ndarray:#remove periodic grid in frequency domain,suppress row/column
     h, w = img.shape
     F = np.fft.fftshift(np.fft.fft2(img))
     Y, X = np.ogrid[:h, :w]
@@ -143,14 +99,14 @@ def notch_filter_fft(img: np.ndarray, offsets: List[Tuple[int,int]], radius: int
     out = (out - out.min()) / (out.max() - out.min() + 1e-8)
     return out
 
-def hough_lines(edges: np.ndarray, rho=1, theta=np.pi/180, threshold=120,
+def hough_lines(edges: np.ndarray, rho=1, theta=np.pi/180, threshold=120,#find straight lines (busbars/grid).
                 min_line_len=80, max_line_gap=8) -> np.ndarray:
     lines = cv2.HoughLinesP(edges, rho=rho, theta=theta, threshold=threshold,
                             minLineLength=min_line_len, maxLineGap=max_line_gap)
     if lines is None: return np.empty((0,4), dtype=int)
     return lines.reshape(-1,4)
 
-def make_grid_mask_from_hough(lines: np.ndarray, img_shape: Tuple[int,int],
+def make_grid_mask_from_hough(lines: np.ndarray, img_shape: Tuple[int,int],#mask grid lines near 0°/90°,remove lattice bias
                               angle_dev_deg: float = 15.0,
                               exclude_angles_deg: Tuple[float,float]=(0.0, 90.0),
                               dilate: int = 3) -> np.ndarray:
@@ -165,7 +121,7 @@ def make_grid_mask_from_hough(lines: np.ndarray, img_shape: Tuple[int,int],
         grid = cv2.dilate(grid, se)
     return grid > 0
 
-def morphology_cleanup(mask: np.ndarray, open_k=3, close_k=3, min_area=60) -> np.ndarray:
+def morphology_cleanup(mask: np.ndarray, open_k=3, close_k=3, min_area=60) -> np.ndarray:#denoise mask and bridge gaps; drop tiny blobs,clean final mask
     u8 = (mask.astype(np.uint8) * 255)
     if open_k > 0:
         se = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (open_k, open_k))
@@ -177,7 +133,7 @@ def morphology_cleanup(mask: np.ndarray, open_k=3, close_k=3, min_area=60) -> np
     bin_mask = morphology.remove_small_objects(bin_mask, min_size=int(min_area))
     return bin_mask.astype(np.float32)
 
-def crack_score(img_den: np.ndarray) -> np.ndarray:
+def crack_score(img_den: np.ndarray) -> np.ndarray:#boost curvy cracks
     """Combine inverted intensity + black-hat + Sato ridge to emphasize cracks."""
     inv = 1.0 - img_den
     bh  = black_hat(img_den, radius=3)
@@ -187,7 +143,7 @@ def crack_score(img_den: np.ndarray) -> np.ndarray:
     score = (score - score.min()) / (score.max() - score.min() + 1e-8)
     return score
 
-def skeleton_length(mask: np.ndarray) -> Tuple[float, np.ndarray]:
+def skeleton_length(mask: np.ndarray) -> Tuple[float, np.ndarray]:#quantify crack length
     sk = morphology.skeletonize(mask.astype(bool))
     return float(sk.sum()), sk
 
