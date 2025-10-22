@@ -36,6 +36,9 @@ def imshow_gray(img, use_uint8=False):
     buf.seek(0)
     return buf
 
+# -----------------------
+# Preprocessing
+# -----------------------
 def clahe(img, clip=2.0, tiles=(8,8)):
     u8 = to_uint8(img)
     c = cv2.createCLAHE(clipLimit=clip, tileGridSize=tiles)
@@ -47,18 +50,9 @@ def gaussian(img, ksize=5, sigma=1.0):
     g = cv2.GaussianBlur(u8, (ksize, ksize), sigmaX=sigma)
     return g.astype(np.float32) / 255.0
 
-def canny(img, low, high):
-    return cv2.Canny(to_uint8(img), low, high)
-
-def adaptive_gaussian_threshold(img, block=31, C=6):
-    if block % 2 == 0:
-        block += 1
-    u8 = to_uint8(img)
-    th = cv2.adaptiveThreshold(u8, 255,
-                               cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                               cv2.THRESH_BINARY, block, C)
-    return (th > 0).astype(np.float32)
-
+# -----------------------
+# Frequency-domain helpers
+# -----------------------
 def fft_magnitude(img):
     F = np.fft.fftshift(np.fft.fft2(img))
     mag = np.log1p(np.abs(F))
@@ -82,6 +76,21 @@ def notch_filter_fft(img, offsets, radius=6):
     out = (out - out.min()) / (out.max() - out.min() + 1e-8)
     return out
 
+# -----------------------
+# Segmentation / edges / grid
+# -----------------------
+def adaptive_gaussian_threshold(img, block=31, C=6):
+    if block % 2 == 0:
+        block += 1
+    u8 = to_uint8(img)
+    th = cv2.adaptiveThreshold(u8, 255,
+                               cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                               cv2.THRESH_BINARY, block, C)
+    return (th > 0).astype(np.float32)
+
+def canny(img, low, high):
+    return cv2.Canny(to_uint8(img), low, high)
+
 def hough_lines(edges, rho=1, theta=np.pi/180, threshold=140, min_line_len=110, max_line_gap=8):
     lines = cv2.HoughLinesP(edges, rho=rho, theta=theta, threshold=threshold,
                             minLineLength=min_line_len, maxLineGap=max_line_gap)
@@ -101,6 +110,9 @@ def make_grid_mask_from_hough(lines, shape, angle_dev_deg=12.0, exclude=(0.0, 90
         grid = cv2.dilate(grid, se)
     return grid > 0
 
+# -----------------------
+# Crack scoring
+# -----------------------
 def black_hat(img, radius=3):
     se = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2*radius+1, 2*radius+1))
     u8 = to_uint8(img)
@@ -116,6 +128,9 @@ def crack_score(img_den):
     score = (score - score.min()) / (score.max() - score.min() + 1e-8)
     return score
 
+# -----------------------
+# Post-processing / metrics / viz
+# -----------------------
 def morphology_cleanup(mask, open_k=3, close_k=3, min_area=120):
     u8 = (mask.astype(np.uint8) * 255)
     if open_k > 0:
@@ -146,6 +161,7 @@ def classify_severity(crack_len_px, H, W):
         return "Medium", ratio
     else:
         return "High", ratio
+
 
 # --------------------------------------------
 # Streamlit UI
@@ -230,19 +246,19 @@ if uploaded is not None:
     st.subheader("Step-by-Step Workflow (3-column View)")
 
     images = [
-        ("0️⃣ Input", img0),
-        ("1️⃣ CLAHE", img1),
-        ("2️⃣ Gaussian Blur", img2),
-        ("3️⃣ FFT Magnitude", fft_mag),
-        ("3b️ Notch Filtered", img2n if use_notch else img2),
-        ("4️⃣ Canny Edges", edges),
-        ("5️⃣ Cell Boundaries", cells),
-        ("6️⃣ Grid Mask", grid_mask),
-        ("7️⃣ Crack Score", cscore),
-        ("8️⃣ Raw Defect Mask", mask_raw),
-        ("9️⃣ Cleaned Mask", mask),
-        ("🔟 Overlay", overlay[..., ::-1]),
-        ("1️⃣1️⃣ Skeleton", skel),
+        ("0 Input", img0),
+        ("1 CLAHE", img1),
+        ("2 Gaussian Blur", img2),
+        ("3 FFT Magnitude", fft_mag),
+        ("3b Notch Filtered", img2n if use_notch else img2),
+        ("4 Canny Edges", edges),
+        ("5 Cell Boundaries", cells),
+        ("6 Grid Mask", grid_mask),
+        ("7 Crack Score", cscore),
+        ("8 Raw Defect Mask", mask_raw),
+        ("9 Cleaned Mask", mask),
+        ("10 Overlay", overlay[..., ::-1]),
+        ("11 Skeleton", skel),
     ]
 
     for i in range(0, len(images), 3):
@@ -267,3 +283,6 @@ if uploaded is not None:
 
 else:
     st.info("📤 Upload an EL image to run the defect detection pipeline.")
+    
+    
+#https://cryptic0053-cse-4128-image-processing-a-projectapp-el-ui-3yeav6.streamlit.app/
