@@ -7,9 +7,7 @@ import matplotlib.pyplot as plt
 from skimage import morphology, measure
 from skimage.filters import threshold_otsu, threshold_sauvola, sato
 
-# -----------------------
 # Helper functions
-# -----------------------
 def to_float01(img):
     img = img.astype(np.float32)
     if img.max() > 1.0:
@@ -36,9 +34,7 @@ def imshow_gray(img, use_uint8=False):
     buf.seek(0)
     return buf
 
-# -----------------------
 # Preprocessing
-# -----------------------
 def clahe(img, clip=2.0, tiles=(8,8)):
     u8 = to_uint8(img)
     c = cv2.createCLAHE(clipLimit=clip, tileGridSize=tiles)
@@ -50,9 +46,7 @@ def gaussian(img, ksize=5, sigma=1.0):
     g = cv2.GaussianBlur(u8, (ksize, ksize), sigmaX=sigma)
     return g.astype(np.float32) / 255.0
 
-# -----------------------
 # Frequency-domain helpers
-# -----------------------
 def fft_magnitude(img):
     F = np.fft.fftshift(np.fft.fft2(img))
     mag = np.log1p(np.abs(F))
@@ -76,9 +70,7 @@ def notch_filter_fft(img, offsets, radius=6):
     out = (out - out.min()) / (out.max() - out.min() + 1e-8)
     return out
 
-# -----------------------
 # Segmentation / edges / grid
-# -----------------------
 def adaptive_gaussian_threshold(img, block=31, C=6):
     if block % 2 == 0:
         block += 1
@@ -110,9 +102,7 @@ def make_grid_mask_from_hough(lines, shape, angle_dev_deg=12.0, exclude=(0.0, 90
         grid = cv2.dilate(grid, se)
     return grid > 0
 
-# -----------------------
 # Crack scoring
-# -----------------------
 def black_hat(img, radius=3):
     se = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2*radius+1, 2*radius+1))
     u8 = to_uint8(img)
@@ -128,9 +118,7 @@ def crack_score(img_den):
     score = (score - score.min()) / (score.max() - score.min() + 1e-8)
     return score
 
-# -----------------------
 # Post-processing / metrics / viz
-# -----------------------
 def morphology_cleanup(mask, open_k=3, close_k=3, min_area=120):
     u8 = (mask.astype(np.uint8) * 255)
     if open_k > 0:
@@ -162,10 +150,7 @@ def classify_severity(crack_len_px, H, W):
     else:
         return "High", ratio
 
-
-# --------------------------------------------
 # Streamlit UI
-# --------------------------------------------
 st.set_page_config(page_title="EL Defect Viewer", layout="wide")
 st.title("Electroluminescence (EL) Defect Viewer")
 
@@ -193,9 +178,7 @@ with st.sidebar:
 uploaded = st.file_uploader("Upload EL image (PNG/JPG/BMP)", type=['png','jpg','jpeg','bmp','tif','tiff'])
 
 if uploaded is not None:
-    # -----------------------
     # Processing pipeline
-    # -----------------------
     file_bytes = np.asarray(bytearray(uploaded.read()), dtype=np.uint8)
     img0 = cv2.imdecode(file_bytes, cv2.IMREAD_UNCHANGED)
     if img0 is None:
@@ -240,9 +223,7 @@ if uploaded is not None:
     H, W = img2n.shape
     sev, ratio = classify_severity(crack_len_px, H, W)
 
-    # -----------------------
-    # Display (3-column grid)
-    # -----------------------
+    # Display
     st.subheader("Step-by-Step Workflow")
 
     images = [
@@ -282,7 +263,7 @@ if uploaded is not None:
     st.write(f"- Hough lines detected: **{len(lines)}**")
 
 else:
-    st.info("📤 Upload an EL image to run the defect detection pipeline.")
+    st.info(" Upload an EL image to run the defect detection pipeline.")
     
     
 #https://cryptic0053-cse-4128-image-processing-a-projectapp-el-ui-3yeav6.streamlit.app/
