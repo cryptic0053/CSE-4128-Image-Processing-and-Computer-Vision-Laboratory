@@ -243,7 +243,7 @@ if uploaded is not None:
     # -----------------------
     # Display (3-column grid)
     # -----------------------
-    st.subheader("Step-by-Step Workflow (3-column View)")
+    st.subheader("Step-by-Step Workflow")
 
     images = [
         ("0 Input", img0),
@@ -273,7 +273,7 @@ if uploaded is not None:
                     col.image(img, use_container_width=True)
 
     st.divider()
-    st.subheader("📊 Metrics Summary")
+    st.subheader("Metrics Summary")
     st.write(f"- Image size: **{W}×{H}**")
     st.write(f"- Regions detected: **{len(props)}**")
     st.write(f"- Crack length (px): **{int(crack_len_px)}**")
